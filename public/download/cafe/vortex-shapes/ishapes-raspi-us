@@ -1,0 +1,32 @@
+#!/bin/bash
+
+ADDR=66.175.212.58
+
+BASE_PORT=10000
+PORT_OFFSET=${RANDOM}%1000
+LOCAL_PORT=$((BASE_PORT+PORT_OFFSET))
+
+PARTITION=$1
+VERSION=2.1.0-SNAPSHOT
+
+PUBLIC_DISCOVERY_PORT=7400
+DISCOVERY_LOCATOR=${ADDR}:${PUBLIC_DISCOVERY_PORT}
+
+if [ $# -lt 1 ]; then
+    echo "USAGE:"
+    echo "        ishapes <partition>"
+    exit
+fi
+
+#     -Ddds.registerType=org.omg.dds.demo.ShapeType \
+
+java \
+    -Dddsi.network.transport=tcp \
+    -Dddsi.discovery.tcp.peers=${DISCOVERY_LOCATOR} \
+    -Dddsi.discovery.externalNetworkAddresses=none \
+    -Ddds.partition=${PARTITION} \
+    -DrefreshTimeout=40 \
+    -Dddsi.discovery.tcp.port=${LOCAL_PORT} \
+    -Dddsi.discovery.externalNetworkAddresses=none \
+    -jar  ./ishapes-${VERSION}.jar --noHMI --script demo.js
+

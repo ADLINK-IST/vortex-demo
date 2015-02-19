@@ -1,0 +1,32 @@
+Dependencies
+---------------
+
+To run the vortex-ishapes demo you simply need to have a JDK or JRE --
+ideally v1.7 or higher.
+
+If you don't have a JDK/JRE installed, please get one from:
+
+   http://java.oracle.com
+
+
+
+Running the Demo
+----------------
+
+Running the demo is very simple, on windows do: 
+
+c:\some\path\vortex-shapes:> ishapes.bat somebody@company.com
+
+On Unix derivatives (Linux, MacOS, Solaris, etc.), do:
+
+$ ./ishapes somebody@company.com
+
+This command will start the ishapes application using your email as
+the partition used to produce and consume data. If you want to play
+with the web demo (http://demo.prismtech.com:9000), ensure that you
+use the same email address for both demo.
+
+You can start multiple instances of the demo, publish and subscribe to
+different shapes across applications running on the JVM, the Web
+Browser as well as Android.
+
